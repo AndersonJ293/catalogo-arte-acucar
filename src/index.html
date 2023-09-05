@@ -1,14 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arte e Açúcar</title>
 
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script
+      src="./assets/js/components/catalogIndividualItem.js"
+      defer
+    ></script>
+
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    Teste
+    <nav>
+      <div class="title">
+        <img
+          src="./assets/images/arte-e-acucar-logo.svg"
+          alt="Logo Arte e Açúcar"
+        />
+        <span>Arte e Açúcar</span>
+      </div>
+
+      <div class="navButtons">
+        <div class="iconContainer">
+          <img
+            class="icon"
+            src="./assets/images/icons/shopping-bag.svg"
+            alt=""
+          />
+        </div>
+        <div class="iconContainer">
+          <img
+            class="icon"
+            src="./assets/images/icons/burguer-menu.svg"
+            alt=""
+          />
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section class="individualItems">
+        <p>Doces Individuais</p>
+
+        <div class="catalogItems">
+          <individual-item
+            name="Bolo no Palito"
+            description="Bolo com recheio de brigadeiro e decoração 2d."
+            price="R$ 15,00"
+            color="#541514"
+            image="./assets/images/doce1.svg"
+          ></individual-item>
+          <individual-item
+            name="Bolo no Palito"
+            description="Bolo com recheio de brigadeiro e decoração 2d."
+            price="R$ 15,00"
+            color="#541514"
+            image="./assets/images/doce1.svg"
+          ></individual-item>
+          <individual-item
+            name="Bolo no Palito"
+            description="Bolo com recheio de brigadeiro e decoração 2d."
+            price="R$ 15,00"
+            color="#541514"
+            image="./assets/images/doce1.svg"
+            buttonColor="#FF76C2"
+          ></individual-item>
+          <individual-item
+            name="Bolo no Palito"
+            description="Bolo com recheio de brigadeiro e decoração 2d."
+            price="R$ 15,00"
+            color="#541514"
+            image="./assets/images/doce1.svg"
+            buttonColor="#94D0B1"
+          ></individual-item>
+        </div>
+      </section>
+
+      <section class="kits">
+        <p>Kits Personalizados</p>
+
+        <div class="catalogItems"></div>
+      </section>
+    </main>
+
+    <footer></footer>
 
     <script src="./assets/js/main.js"></script>
   </body>
