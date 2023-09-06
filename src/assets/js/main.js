@@ -1,28 +1,35 @@
-const Catalog = require("./models/Catalog");
-const IndividualItem = require("./models/IndividualItem");
-const Kit = require("./models/Kit");
+import { IndividualItem } from "./models/IndividualItem.js";
+import { Catalog } from "./models/Catalog.js";
+import { Kit } from "./models/Kit.js";
 
 Catalog.addItem(
   new IndividualItem(
-    "nome teste",
-    "imagem teste",
-    "2",
-    "descricao teste",
-    "12,25",
-    "background teste",
-    "color teste"
+    "Bombom",
+    "assets/images/doce1.svg",
+    2,
+    "doce muito bom",
+    "R$ 12,50",
+    "option 4"
+  )
+);
+Catalog.addItem(
+  new IndividualItem(
+    "Bombom",
+    "assets/images/doce1.svg",
+    2,
+    "doce muito bom",
+    "R$ 12,50",
+    "option 2"
   )
 );
 
 Catalog.addItem(
-  new Kit(
-    "nome teste",
-    ["imagem teste", "imagem teste", "imagem teste"],
-    "descricao teste",
-    "12,25",
-    "background teste",
-    "color teste"
+  new IndividualItem(
+    "Bombom",
+    "assets/images/doce1.svg",
+    2,
+    "doce muito bom",
+    "R$ 12,50",
+    "option 3"
   )
 );
-
-Catalog.renderItems();
