@@ -6,13 +6,88 @@
     <title>Arte e Açúcar</title>
 
     <script
+      type="module"
       src="./assets/js/components/catalogIndividualItem.js"
       defer
     ></script>
 
     <link rel="stylesheet" href="./style.css" />
   </head>
+
   <body>
+    <div id="modal" class="modalClosed">
+      <div class="modalContent">
+        <div id="closeModal">X</div>
+        <p id="modalTitle"></p>
+
+        <form action="submit" id="form">
+          <div class="input">
+            <label for="type">Tipo</label>
+            <select name="type" id="type">
+              <option value="individual">Doce Individual</option>
+              <option value="kit">Kit Personalizado</option>
+            </select>
+          </div>
+          <div class="input">
+            <label for="name">Nome</label>
+            <input
+              type="text"
+              name="name"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+          <div class="input">
+            <label for="description">Descrição</label>
+            <input
+              type="text"
+              name="description"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+          <div class="input">
+            <label for="imageUrl">Foto (URL)</label>
+            <input
+              type="text"
+              name="imageUrl"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+          <div class="input">
+            <label for="price">Preço</label>
+            <input
+              type="text"
+              name="price"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+          <div class="input">
+            <label for="minAmount">Quantidade Mínima</label>
+            <input
+              type="text"
+              name="minAmount"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+          <div class="input">
+            <label for="type">Background</label>
+            <select name="background" id="type">
+              <option value="option 1">Opção 1</option>
+              <option value="option 2">Opção 2</option>
+              <option value="option 3">Opção 3</option>
+              <option value="option 4">Opção 4</option>
+            </select>
+          </div>
+          <button type="reset" class="cleanModal">Limpar</button>
+          <button type="submit" id="modalSubmit"></button>
+        </form>
+      </div>
+    </div>
+
     <nav>
       <div class="title">
         <img
@@ -30,7 +105,7 @@
             alt=""
           />
         </div>
-        <div class="iconContainer">
+        <div id="menuButton" class="iconContainer">
           <img
             class="icon"
             src="./assets/images/icons/burguer-menu.svg"

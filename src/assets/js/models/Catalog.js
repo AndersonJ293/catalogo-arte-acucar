@@ -8,6 +8,7 @@ export class Catalog {
     this.#individualItemContainer.innerHTML = "";
     this.#items.forEach((item) => {
       const product = document.createElement("individual-item");
+      product.setAttribute("itemId", item.id);
       product.setAttribute("name", item.name);
       product.setAttribute("description", item.description);
       product.setAttribute("price", item.price);
@@ -17,6 +18,7 @@ export class Catalog {
       product.setAttribute("buttonColor", item.buttonColor);
       product.setAttribute("iconColor", item.iconColor);
       this.#individualItemContainer.appendChild(product);
+      console.log(item.id);
     });
   }
 
@@ -28,7 +30,12 @@ export class Catalog {
   static deleteItem(id) {
     const itemIndex = this.#items.findIndex((item) => item.id === id);
     if (itemIndex !== -1) this.#items.splice(itemIndex, 1);
+    this.renderItems();
   }
 
-  static editItem(id) {}
+  static editItem(id, newItem) {
+    const itemIndex = this.#items.findIndex((item) => item.id === id);
+    if (itemIndex !== -1) this.#items.splice(itemIndex, 1, newItem);
+    Catalog.renderItems();
+  }
 }

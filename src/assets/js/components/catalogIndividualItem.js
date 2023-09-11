@@ -1,3 +1,9 @@
+import { Catalog } from "../models/Catalog.js";
+import { Form, handleModal } from "../main.js";
+const modalTitle = document.querySelector("#modalTitle");
+const modalSubmit = document.querySelector("#modalSubmit");
+import { backgroundOptions } from "../../data/backgroundOptions.js";
+
 class CatalogIndividualItem extends HTMLElement {
   constructor() {
     super();
@@ -9,6 +15,7 @@ class CatalogIndividualItem extends HTMLElement {
   }
 
   build() {
+    const id = this.getAttribute("itemId");
     const name = this.getAttribute("name");
     const description = this.getAttribute("description");
     const price = this.getAttribute("price");
@@ -20,7 +27,52 @@ class CatalogIndividualItem extends HTMLElement {
 
     const componentRoot = document.createElement("div");
     componentRoot.setAttribute("class", "item");
-    componentRoot.style.backgroundImage = `url(${backgroundImage})`;
+    componentRoot.style.backgroundImage = `url(${backgroundOptions[backgroundImage].background})`;
+
+    const adminButtons = document.createElement("div");
+    adminButtons.setAttribute("class", "adminButtons");
+
+    const editButton = document.createElement("button");
+    editButton.setAttribute("class", "adminButton");
+
+    editButton.onclick = (e) => {
+      e.preventDefault();
+      modalTitle.innerText = "Editar Item";
+      modalSubmit.innerText = "Editar";
+
+      Form.init();
+      Form.id = id;
+      Form.type.value = "individual";
+      Form.type.disabled = true;
+      Form.name.value = name;
+      Form.description.value = description;
+      Form.price.value = price;
+      Form.imageUrl.value = imageUrl;
+      Form.minAmount.value = minAmount;
+      Form.background.value = backgroundImage;
+      handleModal();
+    };
+
+    const editButtonIcon = document.createElement("img");
+    editButtonIcon.setAttribute("class", "buttonIcon");
+    editButton.appendChild(editButtonIcon);
+    editButtonIcon.src = "assets/images/icons/edit.svg";
+    adminButtons.appendChild(editButton);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("class", "adminButton");
+
+    deleteButton.onclick = (e) => {
+      e.preventDefault();
+      Catalog.deleteItem(id);
+    };
+
+    const deleteButtonIcon = document.createElement("img");
+    deleteButtonIcon.setAttribute("class", "buttonIcon");
+    deleteButtonIcon.src = "assets/images/icons/delete.svg";
+    deleteButton.appendChild(deleteButtonIcon);
+    adminButtons.appendChild(deleteButton);
+    componentRoot.appendChild(adminButtons);
 
     const info = document.createElement("div");
     info.setAttribute("class", "info");
@@ -34,6 +86,9 @@ class CatalogIndividualItem extends HTMLElement {
     itemDescription.setAttribute("class", "description");
     itemDescription.innerText = description;
     info.appendChild(itemDescription);
+
+    const moreInfoContainer = document.createElement("div");
+    moreInfoContainer.setAttribute("class", "moreInfo");
 
     const priceContainer = document.createElement("div");
     priceContainer.setAttribute("class", "priceContainer");
@@ -50,10 +105,15 @@ class CatalogIndividualItem extends HTMLElement {
     const cartIcon = document.createElement("img");
     cartIcon.setAttribute("class", "buttonIcon");
     cartIcon.src = "assets/images/icons/shopping-cart.svg";
-    cartIcon.style.color = "#fff";
     cartButton.appendChild(cartIcon);
     priceContainer.appendChild(cartButton);
-    info.appendChild(priceContainer);
+    moreInfoContainer.appendChild(priceContainer);
+
+    const amount = document.createElement("p");
+    amount.setAttribute("class", "minAmount");
+    amount.innerHTML = `Quantidade Minima: <b>${minAmount}<b>`;
+    moreInfoContainer.appendChild(amount);
+    info.appendChild(moreInfoContainer);
 
     const imageContainer = document.createElement("div");
     imageContainer.setAttribute("class", "imageContainer");
@@ -81,6 +141,7 @@ class CatalogIndividualItem extends HTMLElement {
     }
  
     .item {
+      position: relative;
       display: flex;
       width: 450px;
       height: 250px;
@@ -90,6 +151,35 @@ class CatalogIndividualItem extends HTMLElement {
       border-radius: 10px;
       margin-bottom: 25px;
       margin-right: 25px;
+    }
+
+    .adminButtons {
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      opacity: 0;
+      transition: 0.3s ease-in;
+    }
+
+    .item:hover > .adminButtons {
+      opacity: 0.7;
+    }
+
+    .adminButton {
+      width: 28px;
+      height: 28px;
+      margin-right: 10px;
+      border: 1px solid #541514;
+      cursor: pointer;
+      border-radius: 4px;
+      background-color: rgba(0,0,0,0.0);
+      box-shadow: 2px 2px 4px 1px rgba(236, 116, 180, 0.5);
+      transition: 0.3s ease-in;
+    }
+
+    .adminButton:hover {
+      filter: brightness(200%);
+      backdrop-filter: blur(10px);
     }
 
     .info {
