@@ -141,6 +141,7 @@ class CatalogIndividualItem extends HTMLElement {
     }
  
     .item {
+      z-index: 0;
       position: relative;
       display: flex;
       width: 450px;
